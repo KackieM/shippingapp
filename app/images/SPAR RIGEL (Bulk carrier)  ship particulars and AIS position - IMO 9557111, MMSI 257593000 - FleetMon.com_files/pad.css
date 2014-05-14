@@ -1,0 +1,9 @@
+.jTscrollerPrevButton,
+.jTscrollerNextButton,
+.skyscraper_right {
+	display											:	none !important;
+}
+
+#header #mainmenu {
+	margin-left									: 0px !important;
+}

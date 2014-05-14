@@ -1,0 +1,92 @@
+
+
+(function (globals) {
+
+  var django = globals.django || (globals.django = {});
+
+  
+  django.pluralidx = function (count) { return (count == 1) ? 0 : 1; };
+  
+
+  
+  /* gettext identity library */
+
+  django.gettext = function (msgid) { return msgid; };
+  django.ngettext = function (singular, plural, count) { return (count == 1) ? singular : plural; };
+  django.gettext_noop = function (msgid) { return msgid; };
+  django.pgettext = function (context, msgid) { return msgid; };
+  django.npgettext = function (context, singular, plural, count) { return (count == 1) ? singular : plural; };
+  
+
+  django.interpolate = function (fmt, obj, named) {
+    if (named) {
+      return fmt.replace(/%\(\w+\)s/g, function(match){return String(obj[match.slice(2,-2)])});
+    } else {
+      return fmt.replace(/%s/g, function(match){return String(obj.shift())});
+    }
+  };
+
+
+  /* formatting library */
+
+  django.formats = {
+    "DATETIME_FORMAT": "N j, Y, P", 
+    "DATETIME_INPUT_FORMATS": [
+      "%Y-%m-%d %H:%M:%S", 
+      "%Y-%m-%d %H:%M:%S.%f", 
+      "%Y-%m-%d %H:%M", 
+      "%Y-%m-%d", 
+      "%m/%d/%Y %H:%M:%S", 
+      "%m/%d/%Y %H:%M:%S.%f", 
+      "%m/%d/%Y %H:%M", 
+      "%m/%d/%Y", 
+      "%m/%d/%y %H:%M:%S", 
+      "%m/%d/%y %H:%M:%S.%f", 
+      "%m/%d/%y %H:%M", 
+      "%m/%d/%y"
+    ], 
+    "DATE_FORMAT": "N j, Y", 
+    "DATE_INPUT_FORMATS": [
+      "%Y-%m-%d", 
+      "%m/%d/%Y", 
+      "%m/%d/%y"
+    ], 
+    "DECIMAL_SEPARATOR": ".", 
+    "FIRST_DAY_OF_WEEK": "0", 
+    "MONTH_DAY_FORMAT": "F j", 
+    "NUMBER_GROUPING": "3", 
+    "SHORT_DATETIME_FORMAT": "m/d/Y P", 
+    "SHORT_DATE_FORMAT": "m/d/Y", 
+    "THOUSAND_SEPARATOR": ",", 
+    "TIME_FORMAT": "P", 
+    "TIME_INPUT_FORMATS": [
+      "%H:%M:%S", 
+      "%H:%M:%S.%f", 
+      "%H:%M"
+    ], 
+    "YEAR_MONTH_FORMAT": "F Y"
+  };
+
+  django.get_format = function (format_type) {
+    var value = django.formats[format_type];
+    if (typeof(value) == 'undefined') {
+      return format_type;
+    } else {
+      return value;
+    }
+  };
+
+  /* add to global namespace */
+  globals.pluralidx = django.pluralidx;
+  globals.gettext = django.gettext;
+  globals.ngettext = django.ngettext;
+  globals.gettext_noop = django.gettext_noop;
+  globals.pgettext = django.pgettext;
+  globals.npgettext = django.npgettext;
+  globals.interpolate = django.interpolate;
+  globals.get_format = django.get_format;
+
+}(this));
+
+
+trends={"vessels": {"week": [{"count": 1342, "name": "2GV RG J HUHR", "link": "/vessels/2gv_Rg_J_Huhr_2073027", "flag_name": "Netherlands", "flag_id": "NL", "pk": 2073027, "vessel_type_verbose": "Ship", "icon": "unknown"}, {"count": 506, "name": "CLAIRE A", "link": "/vessels/Claire_A_50892", "flag_name": "Turkey", "flag_id": "TR", "pk": 50892, "vessel_type_verbose": "Container ship", "icon": "cargo"}, {"count": 444, "name": "SALVINIA", "link": "/vessels/Salvinia_36860", "flag_name": "Liberia", "flag_id": "LR", "pk": 36860, "vessel_type_verbose": "General cargo vessel", "icon": "cargo"}, {"count": 425, "name": "GRAND PHOENIX", "link": "/vessels/Grand_Phoenix_47330", "flag_name": "Panama", "flag_id": "PA", "pk": 47330, "vessel_type_verbose": "Vehicle carrier", "icon": "cargo"}, {"count": 397, "name": "HEROIC ACE", "link": "/vessels/Heroic_Ace_29920", "flag_name": "Panama", "flag_id": "PA", "pk": 29920, "vessel_type_verbose": "Vehicle carrier", "icon": "cargo"}, {"count": 369, "name": "XIN SHANGHAI", "link": "/vessels/Xin_Shanghai_52342", "flag_name": "Hong Kong SAR of China", "flag_id": "HK", "pk": 52342, "vessel_type_verbose": "Container ship", "icon": "cargo"}, {"count": 367, "name": "HOEGH TRIDENT", "link": "/vessels/Hoegh_Trident_43376", "flag_name": "Norway", "flag_id": "NO", "pk": 43376, "vessel_type_verbose": "Vehicle carrier", "icon": "cargo"}, {"count": 341, "name": "PILOTTENDER GRODEN", "link": "/vessels/Pilottender_Groden_8768341", "flag_name": "Germany", "flag_id": "DE", "pk": 8768341, "vessel_type_verbose": "Pilot tender", "icon": "tug"}, {"count": 323, "name": "POSEIDON EXPRESS", "link": "/vessels/Poseidon_Express_49370", "flag_name": "Belize", "flag_id": "BZ", "pk": 49370, "vessel_type_verbose": "RoRo ship", "icon": "passenger"}, {"count": 290, "name": "AS VENUS", "link": "/vessels/As_Venus_13154", "flag_name": "Marshall Islands", "flag_id": "MH", "pk": 13154, "vessel_type_verbose": "Container ship", "icon": "cargo"}], "day": [{"count": 186, "name": "2GV RG J HUHR", "link": "/vessels/2gv_Rg_J_Huhr_2073027", "flag_name": "Netherlands", "flag_id": "NL", "pk": 2073027, "vessel_type_verbose": "Ship", "icon": "unknown"}, {"count": 97, "name": "XIN SHANGHAI", "link": "/vessels/Xin_Shanghai_52342", "flag_name": "Hong Kong SAR of China", "flag_id": "HK", "pk": 52342, "vessel_type_verbose": "Container ship", "icon": "cargo"}, {"count": 88, "name": "GRAND PHOENIX", "link": "/vessels/Grand_Phoenix_47330", "flag_name": "Panama", "flag_id": "PA", "pk": 47330, "vessel_type_verbose": "Vehicle carrier", "icon": "cargo"}, {"count": 88, "name": "HEROIC ACE", "link": "/vessels/Heroic_Ace_29920", "flag_name": "Panama", "flag_id": "PA", "pk": 29920, "vessel_type_verbose": "Vehicle carrier", "icon": "cargo"}, {"count": 85, "name": "HOEGH TRIDENT", "link": "/vessels/Hoegh_Trident_43376", "flag_name": "Norway", "flag_id": "NO", "pk": 43376, "vessel_type_verbose": "Vehicle carrier", "icon": "cargo"}, {"count": 78, "name": "BLACK WATCH", "link": "/vessels/Black_Watch_21994", "flag_name": "The Bahamas", "flag_id": "BS", "pk": 21994, "vessel_type_verbose": "Cruise Liner", "icon": "passenger"}, {"count": 72, "name": "ATLANTIC COAST", "link": "/vessels/Atlantic_Coast_1461", "flag_name": "Cyprus", "flag_id": "CY", "pk": 1461, "vessel_type_verbose": "Container ship", "icon": "cargo"}, {"count": 64, "name": "SABRINA", "link": "/vessels/Sabrina_46055", "flag_name": "Antigua and Barbuda", "flag_id": "AG", "pk": 46055, "vessel_type_verbose": "General cargo vessel", "icon": "cargo"}, {"count": 63, "name": "POSEIDON EXPRESS", "link": "/vessels/Poseidon_Express_49370", "flag_name": "Belize", "flag_id": "BZ", "pk": 49370, "vessel_type_verbose": "RoRo ship", "icon": "passenger"}, {"count": 62, "name": "VECHTDIEP", "link": "/vessels/Vechtdiep_48130", "flag_name": "Liberia", "flag_id": "LR", "pk": 48130, "vessel_type_verbose": "General cargo vessel", "icon": "cargo"}], "hour": [{"count": 14, "name": "GAZ FOUNTAIN", "link": "/vessels/Gaz_Fountain_26074", "flag_name": "Panama", "flag_id": "PA", "pk": 26074, "vessel_type_verbose": "Liquefied gas carrier", "icon": "tanker"}, {"count": 14, "name": "CALVI", "link": "/vessels/Calvi_3082315", "flag_name": "France", "flag_id": "FR", "pk": 3082315, "vessel_type_verbose": "Cargo ship", "icon": "cargo"}, {"count": 12, "name": "2GV RG J HUHR", "link": "/vessels/2gv_Rg_J_Huhr_2073027", "flag_name": "Netherlands", "flag_id": "NL", "pk": 2073027, "vessel_type_verbose": "Ship", "icon": "unknown"}, {"count": 12, "name": "SILVER", "link": "/vessels/Silver_3230332", "flag_name": "Morocco", "flag_id": "MA", "pk": 3230332, "vessel_type_verbose": "Chemical carrier", "icon": "tanker"}, {"count": 8, "name": "STENA FORECASTER", "link": "/vessels/Stena_Forecaster_49497", "flag_name": "Sweden", "flag_id": "SE", "pk": 49497, "vessel_type_verbose": "RoRo ship", "icon": "cargo"}, {"count": 8, "name": "SYNERGY QUEEN", "link": "/vessels/Synergy_Queen_2029517", "flag_name": "Liberia", "flag_id": "LR", "pk": 2029517, "vessel_type_verbose": "Oil tanker", "icon": "tanker"}, {"count": 8, "name": "HAOSHUNHUO609", "link": "/vessels/Haoshunhuo609_8977660", "flag_name": "China", "flag_id": "CN", "pk": 8977660, "vessel_type_verbose": "Cargo ship", "icon": "cargo"}, {"count": 8, "name": "CUMHURIYET", "link": "/vessels/Cumhuriyet_49849", "flag_name": "Turkey", "flag_id": "TR", "pk": 49849, "vessel_type_verbose": "Oil tanker", "icon": "tanker"}, {"count": 8, "name": "SALVINIA", "link": "/vessels/Salvinia_36860", "flag_name": "Liberia", "flag_id": "LR", "pk": 36860, "vessel_type_verbose": "General cargo vessel", "icon": "cargo"}, {"count": 7, "name": "POSEIDON EXPRESS", "link": "/vessels/Poseidon_Express_49370", "flag_name": "Belize", "flag_id": "BZ", "pk": 49370, "vessel_type_verbose": "RoRo ship", "icon": "passenger"}]}};browseHistory={"vessel": [{"title": "SPAR RIGEL", "country_id": "NO", "link": "/en/vessels/Spar_Rigel_2044722", "mobilelink": "/mobile/vessels/Spar_Rigel_2044722", "id": "SPAR RIGEL", "icon": "cargo"}, {"title": "MAERSK DENVER", "country_id": "US", "link": "/en/vessels/Maersk_Denver_37981", "mobilelink": "/mobile/vessels/Maersk_Denver_37981", "id": "MAERSK DENVER", "icon": "cargo"}, {"title": "SHAKER 2", "country_id": "TG", "link": "/en/vessels/Shaker_2_45089", "mobilelink": "/mobile/vessels/Shaker_2_45089", "id": "SHAKER 2", "icon": "cargo"}, {"title": "ATLANTIC COAST", "country_id": "CY", "link": "/en/vessels/Atlantic_Coast_1461", "mobilelink": "/mobile/vessels/Atlantic_Coast_1461", "id": "ATLANTIC COAST", "icon": "cargo"}, {"title": "GRANDE ANGOLA", "country_id": "IT", "link": "/en/vessels/Grande_Angola_31886", "mobilelink": "/mobile/vessels/Grande_Angola_31886", "id": "GRANDE ANGOLA", "icon": "cargo"}, {"title": "VITALITY", "country_id": "CY", "link": "/en/vessels/Vitality_32737", "mobilelink": "/mobile/vessels/Vitality_32737", "id": "VITALITY", "icon": "cargo"}], "search": [], "image": [{"link": "/en/vessels/Maersk_Denver_37981/photos/73629", "id": "MAERSK DENVER by glljansen", "title": "MAERSK DENVER by glljansen"}], "public": [], "port": [{"title": "Port Charleston", "country_id": "US", "link": "/en/ports/Port_Charleston_2073", "mobilelink": "/mobile/ports/Port_Charleston_2073", "id": "Port Charleston", "locode": "USCHS"}, {"title": "Rotterdam", "country_id": "NL", "link": "/en/ports/Rotterdam_5805", "mobilelink": "/mobile/ports/Rotterdam_5805", "id": "Rotterdam", "locode": "NLRTM"}, {"title": "San Francisco", "country_id": "US", "link": "/en/ports/San_Francisco_3609", "mobilelink": "/mobile/ports/San_Francisco_3609", "id": "San Francisco", "locode": "USSFO"}, {"title": "Santiago de Cuba", "country_id": "CU", "link": "/en/ports/Santiago_de_Cuba_2487", "mobilelink": "/mobile/ports/Santiago_de_Cuba_2487", "id": "Santiago de Cuba", "locode": "CUSCU"}, {"title": "Tortola", "country_id": "VG", "link": "/en/ports/Tortola_2682", "mobilelink": "/mobile/ports/Tortola_2682", "id": "Tortola", "locode": "VGTOV"}]};ds={"LANG": "en", "username": "KackieM", "HPDV": "port_details", "news": [{"count": "4 hours ago", "bait": "\r\n\tEvergreen becomes a slot partner on CSCL’s North Europe – Far East AEX1 service. Evergreen starts slotting on 18th May with the vessel...", "name_full": "​Evergreen Takes Slots on CSCL’s North Europe – Far East AEX1 Service", "link": "/newsroom/2014/3638/evergreen-takes-slots-cscls-north-europe-far-east-/", "name": "​Evergreen Takes Slots on CSCL’s Nort..."}, {"count": "4 hours ago", "bait": "\r\n\t MOL, Evergreen and Coscon launch a new jointly operated Far East – West Africa service that will be branded WA1. This will be the fir...", "name_full": "​MOL, Evergreen and Coscon Launch a New Far East – West Africa Service", "link": "/newsroom/2014/3635/mol-evergreen-and-coscon-launch-new-far-east-west-/", "name": "​MOL, Evergreen and Coscon Launch a N..."}, {"count": "4 hours ago", "bait": "\r\n\tSome 1.275 million tons of ultra-low sulfur diesel (about 9.5 million barrels) is so far tracked on 29 tankers from the U.S., to arriv...", "name_full": "U.S.-Europe May Diesel Exports Tracked at 9.5m Barrels", "link": "/newsroom/2014/3629/us-europe-may-diesel-exports-tracked-95m-barrels/", "name": "U.S.-Europe May Diesel Exports Tracke..."}, {"count": "4 hours ago", "bait": "\r\n\tThe G6 alliance inaugurates yet another group of services. The “new” North Pacific services NP1, NP2 and NP3 are all inaugurated this ...", "name_full": "​G6 Alliance Inaugurates its North Pacific Services", "link": "/newsroom/2014/3632/g6-alliance-inaugurates-its-north-pacific-services/", "name": "​G6 Alliance Inaugurates its North Pa..."}], "HVDV": "vessel_details", "HVSV": "vessel_search", "HEADERLIVETICKER_URL": "/stats/trends/vessels", "STATIC_URL": "//static.fleetmon.com/static/", "MEDIA_URL": "/media/"};STATIC_URL="//static.fleetmon.com/static/";
